@@ -51,11 +51,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var goalStepper: UIStepper!
     @IBOutlet weak var goalLabel: UILabel!
     
+    @IBOutlet weak var currentActivityLabel: UILabel!
     // MARK: =====UI Lifecycle=====
     @IBAction func stepperClicked(_ sender: UIStepper) {
         print("Daily Goal: \(Int(sender.value)) steps")
         userGoal = Int(sender.value)
-        self.goalLabel.text =  "Daily Goal: \(Int(sender.value)) steps"
+        let stepsB4Goal = userGoal! - todaySteps
+        if stepsB4Goal > 0 {
+            self.goalLabel.text =  "\(stepsB4Goal) more steps to goal:\(Int(sender.value))"
+        } else {
+            self.goalLabel.text =  "exceeded goal:\(Int(sender.value)) by \(-1*stepsB4Goal) steps"
+        }
     }
     
     override func viewDidLoad() {
@@ -71,6 +77,7 @@ class ViewController: UIViewController {
         
         if defaults.integer(forKey: "goal") != 0 {
             self.userGoal = defaults.integer(forKey: "goal")
+            self.goalStepper.value = Double(self.userGoal!)
         } else {
             self.userGoal = Int(self.goalStepper.value)
         }
@@ -124,6 +131,22 @@ class ViewController: UIViewController {
                     print("%@",unwrappedActivity.description)
                     //self.activityLabel.text =
                     print("🚶: \(unwrappedActivity.walking), 🏃: \(unwrappedActivity.running)")
+                    DispatchQueue.main.async {
+                        
+                        if unwrappedActivity.walking {
+                            self.currentActivityLabel.text = "You are walking! 🚶"
+                        } else if unwrappedActivity.running {
+                            self.currentActivityLabel.text = "You are running! 🏃"
+                        } else if unwrappedActivity.cycling {
+                            self.currentActivityLabel.text = "You are biking! 🚲"
+                        } else if unwrappedActivity.automotive {
+                            self.currentActivityLabel.text = "You are in a car! 🚗"
+                        } else if unwrappedActivity.stationary {
+                            self.currentActivityLabel.text = "Move fat man! 🐷"
+                        } else if unwrappedActivity.unknown{
+                            self.currentActivityLabel.text = "You have evaded Apple! Don't let them see this to avoid a lawsuit 🎉"
+                        }
+                    }
                 }
             }
         }

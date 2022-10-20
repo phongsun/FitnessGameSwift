@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -16,30 +16,41 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4000" minimumValue="2000" maximumValue="10000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zK8-Qj-WUu">
-                                <rect key="frame" x="140" y="622" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4000" minimumValue="2000" maximumValue="15000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zK8-Qj-WUu">
+                                <rect key="frame" x="167" y="622" width="94" height="32"/>
                                 <connections>
                                     <action selector="stepperClicked:" destination="BYZ-38-t0r" eventType="valueChanged" id="squ-9Q-FoV"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="376" translatesAutoresizingMaskIntoConstraints="NO" id="sW7-Fg-MNa">
-                                <rect key="frame" x="0.0" y="593" width="375" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="376" translatesAutoresizingMaskIntoConstraints="NO" id="sW7-Fg-MNa">
+                                <rect key="frame" x="27" y="584" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Current Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iar-nl-MKq">
+                                <rect key="frame" x="155" y="685" width="118.99999999999997" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="sW7-Fg-MNa" secondAttribute="trailing" id="CDz-QK-6vt"/>
-                            <constraint firstItem="sW7-Fg-MNa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TGe-53-x6R"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zK8-Qj-WUu" secondAttribute="bottom" constant="238" id="JZ3-uL-Dud"/>
+                            <constraint firstItem="sW7-Fg-MNa" firstAttribute="centerX" secondItem="zK8-Qj-WUu" secondAttribute="centerX" id="Tn3-Dj-TPE"/>
+                            <constraint firstItem="sW7-Fg-MNa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xx6-aX-ora"/>
+                            <constraint firstItem="zK8-Qj-WUu" firstAttribute="top" secondItem="sW7-Fg-MNa" secondAttribute="bottom" constant="17" id="cq7-95-6D4"/>
+                            <constraint firstItem="Iar-nl-MKq" firstAttribute="top" secondItem="zK8-Qj-WUu" secondAttribute="bottom" constant="37" id="i5N-jY-0XT"/>
+                            <constraint firstItem="sW7-Fg-MNa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="7" id="p2P-BZ-pyl"/>
+                            <constraint firstItem="Iar-nl-MKq" firstAttribute="centerX" secondItem="zK8-Qj-WUu" secondAttribute="centerX" id="tm1-kQ-OyE"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentActivityLabel" destination="Iar-nl-MKq" id="tVs-s5-Uiu"/>
                         <outlet property="goalLabel" destination="sW7-Fg-MNa" id="rY2-UT-nlN"/>
                         <outlet property="goalStepper" destination="zK8-Qj-WUu" id="ou8-UJ-VVe"/>
                     </connections>

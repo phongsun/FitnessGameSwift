@@ -70,7 +70,7 @@ class BarChartView: UIView {
     private func drawBar(xPos: CGFloat, yPos: CGFloat, steps: Int) {
         let barLayer = CALayer()
         barLayer.frame = CGRect(x: 80, y: yPos, width: xPos, height: 40.0)
-        barLayer.backgroundColor =  steps < 3000 ? UIColor.lightGray.cgColor : UIColor.systemRed.cgColor
+        barLayer.backgroundColor =  steps < 3000 ? UIColor.systemYellow.cgColor : UIColor.systemRed.cgColor
         mainLayer.addSublayer(barLayer)
     }
     
