@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  FitnessGame
 //
-//  Created by Peter Sunon 10/16/2022.
+//  Created by Peter Sun on 10/16/2022.
 //  Copyright © 2022 Peter Sun. All rights reserved.
 //
 
