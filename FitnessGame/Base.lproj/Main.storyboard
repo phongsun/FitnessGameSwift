@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,10 +38,20 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFZ-de-Ijb">
+                                <rect key="frame" x="177" y="714" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="gameButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NUQ-AJ-bgZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cFZ-de-Ijb" firstAttribute="top" secondItem="Iar-nl-MKq" secondAttribute="bottom" constant="8" id="DLd-a1-NoE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zK8-Qj-WUu" secondAttribute="bottom" constant="238" id="JZ3-uL-Dud"/>
+                            <constraint firstItem="cFZ-de-Ijb" firstAttribute="centerX" secondItem="Iar-nl-MKq" secondAttribute="centerX" id="PyW-gD-n23"/>
                             <constraint firstItem="sW7-Fg-MNa" firstAttribute="centerX" secondItem="zK8-Qj-WUu" secondAttribute="centerX" id="Tn3-Dj-TPE"/>
                             <constraint firstItem="sW7-Fg-MNa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xx6-aX-ora"/>
                             <constraint firstItem="zK8-Qj-WUu" firstAttribute="top" secondItem="sW7-Fg-MNa" secondAttribute="bottom" constant="17" id="cq7-95-6D4"/>
@@ -53,11 +64,36 @@
                         <outlet property="currentActivityLabel" destination="Iar-nl-MKq" id="tVs-s5-Uiu"/>
                         <outlet property="goalLabel" destination="sW7-Fg-MNa" id="rY2-UT-nlN"/>
                         <outlet property="goalStepper" destination="zK8-Qj-WUu" id="ou8-UJ-VVe"/>
+                        <segue destination="cyx-r8-Imy" kind="show" identifier="NextView" id="p4G-e3-l4T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="509.60000000000002" y="308.86699507389164"/>
         </scene>
+        <!--Game View Controller-->
+        <scene sceneID="oOZ-Kd-p61">
+            <objects>
+                <viewController id="cyx-r8-Imy" customClass="GameViewController" customModule="FitnessGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jef-IZ-FAD"/>
+                        <viewControllerLayoutGuide type="bottom" id="rfp-9p-Y42"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8FO-GK-2YT" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="869"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="F0B-tw-8V9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Svm-Lj-aKU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1535" y="308"/>
+        </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

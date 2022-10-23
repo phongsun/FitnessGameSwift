@@ -189,7 +189,12 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
+    
+    @IBAction func gameButtonClicked(_ sender: UIButton) {
+        performSegue(withIdentifier: "NextView", sender: sender)
+    }
+    
 
 }
 
