@@ -15,7 +15,7 @@ enum GAMESTATE {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
-    var isFitnessGoalAchieved = true
+    var isFitnessGoalAchieved = false
     
     // if isFitnessGoalAchieved, use bonus credit
     let DEFAULT_CREDIT = 3
@@ -40,6 +40,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Raw Motion Functions
     let motion = CMMotionManager()
     var isPlay = false
+    
+    var parentViewController : UIViewController?
     
     
     func startMotionUpdates(){
@@ -112,6 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: =====Delegate Functions=====
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("Game state: \(gameState)")
         //self.addCog()
         if gameState == .started {
             if isFitnessGoalAchieved {
@@ -130,7 +133,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.score = DEFAULT_CREDIT
                 gameState = .playing
             }
-            
+        } else if self.gameState == .ended {
+            print("when you die, the world will go on as usual")
+            parentViewController?.dismiss(animated: true)
         }
     }
     
@@ -258,6 +263,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.endLabel.text = text
             self.toon.physicsBody?.restitution = 2.0
             self.addChild(self.endLabel)
+            self.gameState = .ended
         }
         
         let toonHitCog = (contact.bodyA.node == toon && contact.bodyB.node == cog) ||

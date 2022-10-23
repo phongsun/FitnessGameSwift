@@ -14,29 +14,29 @@ class ViewController: UIViewController {
     
     var defaults = UserDefaults.standard
     var userGoal: Int? {
-            didSet{
-                guard let goalValue = userGoal, goalValue > 0 else { return }
-                // 1. update defaults
-                defaults.set(userGoal!, forKey: "goal")
-                // 2. update progress ring
-                let percentOfGoal: Float =  Float(self.todaySteps) / Float(userGoal!)
-                self.goalPercentage = percentOfGoal
-            }
+        didSet{
+            guard let goalValue = userGoal, goalValue > 0 else { return }
+            // 1. update defaults
+            defaults.set(userGoal!, forKey: "goal")
+            // 2. update progress ring
+            let percentOfGoal: Float =  Float(self.todaySteps) / Float(userGoal!)
+            self.goalPercentage = percentOfGoal
         }
+    }
     
     var goalPercentage: Float = 0.0 {
-            didSet{
-                if goalPercentage > 1.0 {
-                    goalPercentage = 1.0
-                }
-                self.progressView.progress = goalPercentage
+        didSet{
+            if goalPercentage > 1.0 {
+                goalPercentage = 1.0
             }
+            self.progressView.progress = goalPercentage
         }
+    }
     
     lazy var barChartView: BarChartView = {
-       let barChartView = BarChartView()
-       barChartView.frame = view.frame
-       return barChartView
+        let barChartView = BarChartView()
+        barChartView.frame = view.frame
+        return barChartView
     }()
     
     lazy var progressView = CircularProgressView(frame: CGRect(x: 0, y: 0, width: 150, height: 150), lineWidth: 15, rounded: false)
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentActivityLabel: UILabel!
     // MARK: =====UI Lifecycle=====
     @IBAction func stepperClicked(_ sender: UIStepper) {
-        print("Daily Goal: \(Int(sender.value)) steps")
+        //print("Daily Goal: \(Int(sender.value)) steps")
         userGoal = Int(sender.value)
         let stepsB4Goal = userGoal! - todaySteps
         if stepsB4Goal > 0 {
@@ -114,8 +114,8 @@ class ViewController: UIViewController {
         self.startActivityMonitoring()
         self.startPedometerMonitoring()
     }
-
-
+    
+    
     // MARK: =====Motion Methods=====
     func startActivityMonitoring(){
         // is activity is available
@@ -128,9 +128,9 @@ class ViewController: UIViewController {
                 // so these updates can come through less often than we may want
                 if let unwrappedActivity = activity {
                     // Print if we are walking or running
-                    print("%@",unwrappedActivity.description)
+                    //print("%@",unwrappedActivity.description)
                     //self.activityLabel.text =
-                    print("🚶: \(unwrappedActivity.walking), 🏃: \(unwrappedActivity.running)")
+                    //print("🚶: \(unwrappedActivity.walking), 🏃: \(unwrappedActivity.running)")
                     DispatchQueue.main.async {
                         
                         if unwrappedActivity.walking {
@@ -171,10 +171,8 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         // this goes into the large gray area on view
                         //self.debugLabel.text = "\(data.description)"
-                        print("\(data.description)")
                         // this updates the slider with number of steps
                         //self.stepCounter.value = data.numberOfSteps.floatValue
-                        print("\(data.numberOfSteps.floatValue)")
                         self.todaySteps = data.numberOfSteps.intValue
                         if let goalValue = self.userGoal {
                             self.goalPercentage = Float(self.todaySteps) / Float(goalValue)
@@ -195,6 +193,12 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "NextView", sender: sender)
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? GameViewController{
+            let fitnessGoalAchieved = (self.goalPercentage == 1.0)
+            vc.isFitnessGoalAchieved = fitnessGoalAchieved
+        }
+    }
+    
 }
 

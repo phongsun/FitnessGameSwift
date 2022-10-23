@@ -44,6 +44,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="gameButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NUQ-AJ-bgZ"/>
+                                    <segue destination="cyx-r8-Imy" kind="presentation" identifier="NextView" id="GLn-ZB-oR9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,7 +65,6 @@
                         <outlet property="currentActivityLabel" destination="Iar-nl-MKq" id="tVs-s5-Uiu"/>
                         <outlet property="goalLabel" destination="sW7-Fg-MNa" id="rY2-UT-nlN"/>
                         <outlet property="goalStepper" destination="zK8-Qj-WUu" id="ou8-UJ-VVe"/>
-                        <segue destination="cyx-r8-Imy" kind="show" identifier="NextView" id="p4G-e3-l4T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
